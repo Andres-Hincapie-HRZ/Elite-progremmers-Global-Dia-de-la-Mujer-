@@ -3,24 +3,32 @@ const btnFlip = document.getElementById('btnFlip');
 const btnBack = document.getElementById('btnBack');
 const bgAnimation = document.querySelector('.background-animation');
 
-// Voltear tarjeta
-btnFlip.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('Volteando tarjeta...');
-    card.classList.add('flipped');
-});
+// Voltear tarjeta - Eventos optimizados
+if (btnFlip) {
+    btnFlip.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        card.classList.add('flipped');
+    }, { passive: false });
+    
+    btnFlip.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        card.classList.add('flipped');
+    }, { passive: false });
+}
 
-btnBack.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('Regresando tarjeta...');
-    card.classList.remove('flipped');
-});
-
-// Verificar que los botones existen
-console.log('Botón Flip:', btnFlip);
-console.log('Botón Back:', btnBack);
+if (btnBack) {
+    btnBack.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        card.classList.remove('flipped');
+    }, { passive: false });
+    
+    btnBack.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        card.classList.remove('flipped');
+    }, { passive: false });
+}
 
 // Crear elementos cayendo (rosas y corazones)
 function createFallingElement() {

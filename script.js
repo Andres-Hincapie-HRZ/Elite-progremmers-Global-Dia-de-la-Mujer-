@@ -4,13 +4,23 @@ const btnBack = document.getElementById('btnBack');
 const bgAnimation = document.querySelector('.background-animation');
 
 // Voltear tarjeta
-btnFlip.addEventListener('click', () => {
+btnFlip.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Volteando tarjeta...');
     card.classList.add('flipped');
 });
 
-btnBack.addEventListener('click', () => {
+btnBack.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Regresando tarjeta...');
     card.classList.remove('flipped');
 });
+
+// Verificar que los botones existen
+console.log('Botón Flip:', btnFlip);
+console.log('Botón Back:', btnBack);
 
 // Crear elementos cayendo (rosas y corazones)
 function createFallingElement() {
